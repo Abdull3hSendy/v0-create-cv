@@ -16,6 +16,7 @@ const experiencesEn = [
       "Structured and classified data across multiple domains and standards to enhance traceability and decision-making",
       "Developed interactive dashboards using Power BI to monitor KPIs and track progress in real-time",
       "Contributed to building the DMO Tracker system for managing document lifecycle, statuses, and review workflows",
+      "Acted as Project Manager for Managed Services within the Data Management Office, overseeing project execution, coordinating between stakeholders, and ensuring timely delivery of data-related initiatives",
       "Automated document review processes, reducing manual effort and improving operational efficiency",
       "Assisted in preparing and reviewing data sharing agreements in compliance with data governance policies",
       "Supported data management activities including data collection, validation, and quality improvement",
@@ -64,6 +65,7 @@ const experiencesAr = [
       "هيكلة وتصنيف البيانات عبر مجالات ومعايير متعددة لتعزيز التتبع واتخاذ القرار",
       "تطوير لوحات معلومات تفاعلية باستخدام Power BI لمراقبة مؤشرات الأداء الرئيسية وتتبع التقدم في الوقت الفعلي",
       "المساهمة في بناء نظام DMO Tracker لإدارة دورة حياة الوثائق والحالات وسير عمل المراجعة",
+      "العمل كمدير مشروع للخدمات المُدارة ضمن مكتب إدارة البيانات، والإشراف على تنفيذ المشاريع والتنسيق بين أصحاب المصلحة وضمان التسليم في الوقت المحدد للمبادرات المتعلقة بالبيانات",
       "أتمتة عمليات مراجعة الوثائق، مما قلل من الجهد اليدوي وحسّن الكفاءة التشغيلية",
       "المساعدة في إعداد ومراجعة اتفاقيات مشاركة البيانات وفقاً لسياسات حوكمة البيانات",
       "دعم أنشطة إدارة البيانات بما في ذلك جمع البيانات والتحقق منها وتحسين الجودة",
@@ -244,7 +246,7 @@ const certificationsAr = [
   { name: "أساسيات ومفاهيم قواعد البيانات (Oracle)", provider: "معهد أبادنت للتدريب", date: "يونيو 2025 – أكتوبر 2025" },
   { name: "دورة مكثفة في Figma UI/UX", provider: "Udemy", date: "أغسطس 2025" },
   { name: "دورة حياة تطوير البرمجيات", provider: "Learning Space", date: "ديسمبر 2024" },
-  { name: "تعلم بناء تطبيق تجارة إلكترونية باستخدام .Net Core و Angular", provider: "Udemy", date: "نوفمبر 2024" },
+  { name: "تعلم بناء تطبيق تج��رة إلكترونية باستخدام .Net Core و Angular", provider: "Udemy", date: "نوفمبر 2024" },
 ]
 
 const translations = {
