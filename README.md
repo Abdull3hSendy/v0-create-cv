@@ -36,7 +36,7 @@ In Arabic copy, Latin tokens that start or end with punctuation (`C#`, `.NET`) c
 
 ## How it's built
 
-- `app/[lang]/` — one statically generated page per language with correct `lang`/`dir`, hreflang alternates, Open Graph image and JSON-LD. `app/(redirect)/` sends `/` to the saved or browser-preferred language from the browser, since a static site has no server to do it.
+- `app/[lang]/` — one statically generated page per language with correct `lang`/`dir`, hreflang alternates, Open Graph tags and JSON-LD. `app/og.png/` draws the link-preview image. `app/(redirect)/` sends `/` to the saved or browser-preferred language from the browser, since a static site has no server to do it.
 - `components/portfolio/` — the sections (`hero`, `about`, `experience`, `work`, `skills`, `education`, `contact`) plus shared pieces:
   - `circuit-canvas.tsx` — the animated PCB/network background (pauses when the tab is hidden, static under reduced motion).
   - `chrome.tsx` — navigation, language-switch curtain, theme toggle, intro screen, scroll progress.

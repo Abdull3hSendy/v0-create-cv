@@ -15,7 +15,7 @@ export default function Page({ params }: { params: { lang: string } }) {
     name: site.fullName[lang],
     alternateName: site.fullName[lang === "ar" ? "en" : "ar"],
     jobTitle: t.hero.roles.slice(0, 2).join(" · "),
-    url: `${site.url}/${lang}`,
+    url: `${site.url}/${lang}/`,
     email: `mailto:${site.email}`,
     address: { "@type": "PostalAddress", addressLocality: "Makkah", addressCountry: "SA" },
     alumniOf: { "@type": "CollegeOrUniversity", name: "Umm Al-Qura University" },
