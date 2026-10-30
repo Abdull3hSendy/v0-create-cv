@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider"
 import { site } from "@/content/site"
 import { dirOf, getDictionary, isLocale, locales, type Locale } from "@/lib/i18n"
+import { withBase } from "@/lib/utils"
 import "../globals.css"
 
 const serif = Instrument_Serif({
@@ -34,7 +35,8 @@ export function generateMetadata({ params }: { params: { lang: string } }): Meta
   const lang: Locale = isLocale(params.lang) ? params.lang : "en"
   const t = getDictionary(lang)
   return {
-    metadataBase: new URL(site.url),
+    // Origin only: the paths below already carry the base path, and a base with a path would double it.
+    metadataBase: new URL("/", site.url),
     title: t.meta.title,
     description: t.meta.description,
     authors: [{ name: site.fullName.en, url: site.url }],
@@ -50,19 +52,25 @@ export function generateMetadata({ params }: { params: { lang: string } }): Meta
       "Makkah",
     ],
     alternates: {
-      canonical: `/${lang}/`,
-      languages: { en: "/en/", ar: "/ar/", "x-default": "/en/" },
+      canonical: withBase(`/${lang}/`),
+      languages: { en: withBase("/en/"), ar: withBase("/ar/"), "x-default": withBase("/en/") },
     },
     openGraph: {
       type: "profile",
-      url: `/${lang}/`,
+      url: withBase(`/${lang}/`),
       siteName: site.name[lang],
       title: t.meta.title,
       description: t.meta.description,
       locale: lang === "ar" ? "ar_SA" : "en_US",
       alternateLocale: lang === "ar" ? "en_US" : "ar_SA",
+      images: [{ url: withBase("/og.png"), width: 1200, height: 630, alt: t.meta.title }],
     },
-    twitter: { card: "summary_large_image", title: t.meta.title, description: t.meta.description },
+    twitter: {
+      card: "summary_large_image",
+      title: t.meta.title,
+      description: t.meta.description,
+      images: [withBase("/og.png")],
+    },
     robots: { index: true, follow: true },
   }
 }

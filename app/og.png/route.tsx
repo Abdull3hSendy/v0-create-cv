@@ -1,13 +1,9 @@
 import { ImageResponse } from "next/og"
-import { locales } from "@/lib/i18n"
 
-export const alt = "Abdullah Sendy — Computer & Network Engineer · Full-Stack Developer"
-export const size = { width: 1200, height: 630 }
-export const contentType = "image/png"
+// The link-preview image, written to og.png at build time so static hosts serve it as image/png.
+export const dynamic = "force-static"
 
-export function generateStaticParams() {
-  return locales.map((lang) => ({ lang }))
-}
+const size = { width: 1200, height: 630 }
 
 const traces = [
   "M40 120 H260 L300 160 H520",
@@ -17,7 +13,7 @@ const traces = [
   "M1040 300 V420 L1000 460 H860",
 ]
 
-export default function OpengraphImage() {
+export function GET() {
   return new ImageResponse(
     (
       <div
