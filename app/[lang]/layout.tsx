@@ -50,12 +50,12 @@ export function generateMetadata({ params }: { params: { lang: string } }): Meta
       "Makkah",
     ],
     alternates: {
-      canonical: `/${lang}`,
-      languages: { en: "/en", ar: "/ar", "x-default": "/en" },
+      canonical: `/${lang}/`,
+      languages: { en: "/en/", ar: "/ar/", "x-default": "/en/" },
     },
     openGraph: {
       type: "profile",
-      url: `/${lang}`,
+      url: `/${lang}/`,
       siteName: site.name[lang],
       title: t.meta.title,
       description: t.meta.description,
@@ -89,7 +89,8 @@ export default function LangLayout({ children, params }: { children: React.React
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           {children}
         </ThemeProvider>
-        <Analytics />
+        {/* Vercel Analytics only works when Vercel hosts the site. */}
+        {process.env.VERCEL && <Analytics />}
       </body>
     </html>
   )

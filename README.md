@@ -7,8 +7,12 @@ Bilingual (English / العربية) personal portfolio and CV. Next.js 14 (App 
 ```bash
 bun install        # or: npm install
 bun dev            # http://localhost:3000 → redirects to /en or /ar
-bun run build && bun start
+bun run build      # static site in out/ — preview it with: npx serve out
 ```
+
+## Deploy
+
+Every push to `main` builds the site and publishes it to GitHub Pages at https://abdull3hsendy.github.io/v0-create-cv/ (see `.github/workflows/pages.yml`). Pages serves it under `/v0-create-cv`, so links to files in `public/` from plain `<a>`/`<img>` tags go through `withBase()` in `lib/utils.ts`; `<Link>` adds the prefix itself.
 
 ## Editing content
 
@@ -32,7 +36,7 @@ In Arabic copy, Latin tokens that start or end with punctuation (`C#`, `.NET`) c
 
 ## How it's built
 
-- `app/[lang]/` — one statically generated page per language with correct `lang`/`dir`, hreflang alternates, Open Graph image and JSON-LD. `middleware.ts` sends `/` to the saved or browser-preferred language.
+- `app/[lang]/` — one statically generated page per language with correct `lang`/`dir`, hreflang alternates, Open Graph image and JSON-LD. `app/(redirect)/` sends `/` to the saved or browser-preferred language from the browser, since a static site has no server to do it.
 - `components/portfolio/` — the sections (`hero`, `about`, `experience`, `work`, `skills`, `education`, `contact`) plus shared pieces:
   - `circuit-canvas.tsx` — the animated PCB/network background (pauses when the tab is hidden, static under reduced motion).
   - `chrome.tsx` — navigation, language-switch curtain, theme toggle, intro screen, scroll progress.

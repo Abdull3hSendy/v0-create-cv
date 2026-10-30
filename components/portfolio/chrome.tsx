@@ -5,7 +5,7 @@ import { Download, Menu, Moon, Sun, X } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useCallback, useEffect, useState } from "react"
 import { site } from "@/content/site"
-import { cn } from "@/lib/utils"
+import { cn, withBase } from "@/lib/utils"
 import { useI18n } from "./i18n"
 import { EASE, useBootReady } from "./primitives"
 
@@ -40,7 +40,7 @@ export function useLangSwitch() {
     try {
       sessionStorage.setItem("as-wipe", JSON.stringify({ dir, section: currentSection() }))
     } catch {}
-    const go = () => window.location.assign(`/${next}`)
+    const go = () => window.location.assign(withBase(`/${next}/`))
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return go()
     const root = document.documentElement
     root.setAttribute("data-wipe-dir", dir)

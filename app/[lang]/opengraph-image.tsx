@@ -1,9 +1,13 @@
 import { ImageResponse } from "next/og"
+import { locales } from "@/lib/i18n"
 
-export const runtime = "edge"
 export const alt = "Abdullah Sendy — Computer & Network Engineer · Full-Stack Developer"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
+
+export function generateStaticParams() {
+  return locales.map((lang) => ({ lang }))
+}
 
 const traces = [
   "M40 120 H260 L300 160 H520",
