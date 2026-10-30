@@ -7,7 +7,7 @@ import { motion, useInView, useReducedMotion } from "motion/react"
 import { Check, ChevronLeft, ChevronRight, Nfc } from "lucide-react"
 import { useEffect, useId, useRef, useState } from "react"
 import type { ProjectMeta } from "@/content/projects"
-import { cn } from "@/lib/utils"
+import { cn, withBase } from "@/lib/utils"
 import { useI18n } from "./i18n"
 import { EASE } from "./primitives"
 
@@ -208,7 +208,7 @@ function HajjVisual() {
 
 /** Two real screenshots in tilted browser windows that straighten on hover (see `.case:hover`). */
 function BrowserShots({ meta, alts }: { meta: ProjectMeta; alts: string[] }) {
-  const shots = meta.shots ?? []
+  const shots = (meta.shots ?? []).map(withBase)
   const urls = meta.shotUrls ?? []
   return (
     <Fit width={560} ratio={4 / 3.05}>
@@ -229,7 +229,7 @@ const SHOT_RATIO = "16 / 10"
 /** Cross-fading screenshot gallery in a browser frame, with arrows, dots and keyboard support. */
 function ShotCarousel({ meta, alts }: { meta: ProjectMeta; alts: string[] }) {
   const { t, dir } = useI18n()
-  const shots = meta.shots ?? []
+  const shots = (meta.shots ?? []).map(withBase)
   const n = shots.length
   const [index, setIndex] = useState(0)
 
