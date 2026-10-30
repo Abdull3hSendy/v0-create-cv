@@ -1,33 +1,43 @@
-# v0-create-cv
+# Abdullah Sendy — Portfolio
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
+Bilingual (English / العربية) personal portfolio and CV. Next.js 14 (App Router) · TypeScript · Tailwind CSS 4 · Motion · Lucide.
 
-## Built with v0
-
-This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
-
-[Continue working on v0 →](https://v0.app/chat/projects/prj_EDWg5toQM16jFoyb2sqj8zdrHvq7)
-
-## Getting Started
-
-First, run the development server:
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+bun install        # or: npm install
+bun dev            # http://localhost:3000 → redirects to /en or /ar
+bun run build && bun start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Editing content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+All text lives in `content/` — components never hard-code copy.
 
-## Learn More
+| File | What's in it |
+| --- | --- |
+| `content/en.ts`, `content/ar.ts` | Every visible string, per language. Both must satisfy the `Dictionary` type in `content/types.ts`, so TypeScript flags anything missing from one language. |
+| `content/projects.ts` | Project metadata shared by both languages: GitHub link, stack, icon, accent colours, which projects are featured, and which skill categories link to which projects. |
+| `content/site.ts` | Email, phone, social links, CV path, coordinates, marquee words. |
+| `public/Abdullah-Sendy-CV.pdf` | The file behind every "Download CV" button. Replace it to update the CV. |
 
-To learn more, take a look at the following resources:
+Wrap a word in `*asterisks*` in a heading to give it the gradient serif accent (e.g. `"Systems I've *engineered*."`).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.
+In Arabic copy, Latin tokens that start or end with punctuation (`C#`, `.NET`) carry a `‎` mark so they don't flip inside right-to-left text.
+
+### Adding a project
+
+1. Add an entry to `projects` in `content/projects.ts` (set `featured: true` and a `visual` to show it as a large case study).
+2. Add its text under `work.items` in **both** `en.ts` and `ar.ts`.
+
+## How it's built
+
+- `app/[lang]/` — one statically generated page per language with correct `lang`/`dir`, hreflang alternates, Open Graph image and JSON-LD. `middleware.ts` sends `/` to the saved or browser-preferred language.
+- `components/portfolio/` — the sections (`hero`, `about`, `experience`, `work`, `skills`, `education`, `contact`) plus shared pieces:
+  - `circuit-canvas.tsx` — the animated PCB/network background (pauses when the tab is hidden, static under reduced motion).
+  - `chrome.tsx` — navigation, language-switch curtain, theme toggle, intro screen, scroll progress.
+  - `project-visuals.tsx` — coded illustrations for the featured projects, labelled as illustrations on the page.
+  - `project-modal.tsx` — accessible case-study dialog.
+- `app/globals.css` — colour tokens for dark and light themes (olive `#6D765B`, ocean `#2596BE`) and the type roles that switch to Arabic fonts in RTL.
+
+`prefers-reduced-motion` is respected throughout: no intro screen, no parallax or travelling pulses, no tilt or magnetic effects.
